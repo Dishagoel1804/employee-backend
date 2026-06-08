@@ -1,15 +1,4 @@
-name: Build and Push Backend
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
+steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -18,6 +7,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+
+      - name: Make mvnw executable
+        run: chmod +x mvnw
 
       - name: Build JAR
         run: ./mvnw package -DskipTests
